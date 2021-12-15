@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "apui": "apps/apui",
+    "apui-e2e": "apps/apui-e2e"
+  }
+}

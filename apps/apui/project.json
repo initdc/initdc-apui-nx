@@ -1,0 +1,66 @@
+{
+  "projectType": "application",
+  "root": "apps/apui",
+  "sourceRoot": "apps/apui/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/apui",
+        "index": "apps/apui/src/index.html",
+        "baseHref": "/",
+        "main": "apps/apui/src/main.ts",
+        "polyfills": "apps/apui/src/polyfills.ts",
+        "tsConfig": "apps/apui/tsconfig.app.json",
+        "assets": ["apps/apui/src/favicon.ico", "apps/apui/src/assets"],
+        "styles": ["apps/apui/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/apui/src/environments/environment.ts",
+              "with": "apps/apui/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "apui:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "apui:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/apui/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/apui"],
+      "options": {
+        "jestConfig": "apps/apui/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
